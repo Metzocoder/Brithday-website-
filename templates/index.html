@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block title %}Questions — Dino Birthday{% endblock %}
+{% block content %}
+
+<div class="bg-white shadow-2xl rounded-2xl p-8 mt-10 relative overflow-hidden">
+  <h1 class="text-3xl font-bold text-pink-600 mb-6">Answer honestly, my dino 🦖💗</h1>
+
+  <!-- Question 1 -->
+  <div id="q1" class="question-block active mb-10 transition-all duration-500">
+    <p class="font-semibold text-lg">1. Am I the best person in your life?</p>
+    <div class="mt-4 flex gap-4 justify-center">
+      <button id="yes1" class="yes-btn">Yes, obviously</button>
+      <button id="no1" class="no-btn">No</button>
+    </div>
+  </div>
+
+  <!-- Question 2 -->
+  <div id="q2" class="question-block hidden mb-10 transition-all duration-500">
+    <p class="font-semibold text-lg">2. Would you trade me for a lifetime supply of chocolate? 🍫</p>
+    <div class="mt-4 flex gap-4 justify-center">
+      <button id="yes2" class="yes-btn">No way!</button>
+      <button id="no2" class="no-btn">Yes 😬</button>
+    </div>
+  </div>
+
+  <!-- Question 3 -->
+  <div id="q3" class="question-block hidden mb-10 transition-all duration-500">
+    <p class="font-semibold text-lg">3. Do you promise to be my best friend forever? 💞</p>
+    <div class="mt-4 flex gap-4 justify-center">
+      <button id="yes3" class="yes-btn">I promise 💖</button>
+      <button id="no3" class="no-btn">No</button>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

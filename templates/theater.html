@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block title %}Birthday Theater{% endblock %}
+{% block content %}
+
+<div class="bg-gray-900 text-pink-100 rounded-2xl shadow-2xl p-8 mt-10 relative overflow-hidden theater-bg">
+  <h2 class="text-3xl font-bold mb-8 text-center">🎥 Welcome to the Birthday Theater</h2>
+
+  <div class="theater-stage relative overflow-hidden max-w-2xl mx-auto rounded-xl mb-8">
+    <div class="curtain left"></div>
+    <div class="curtain right"></div>
+
+    <div class="relative bg-black rounded-xl overflow-hidden flex items-center justify-center h-64">
+      <video controls class="rounded-xl w-full h-full object-contain">
+        <source src="static\videos\birthday_surprise.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+
+  <div class="mt-10 text-center">
+    <a href="{{ url_for('credits') }}"
+      class="inline-block px-8 py-3 bg-pink-400 text-white font-bold rounded-full hover:bg-pink-500 shadow-lg transition">
+      Roll the Credits 💌
+    </a>
+  </div>
+</div>
+
+{% endblock %}

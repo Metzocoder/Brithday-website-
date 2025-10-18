@@ -1,0 +1,201 @@
+/* === GENERAL STYLES === */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #ffe4ef;
+  overflow-x: hidden;
+}
+
+/* === YES/NO BUTTON STYLES === */
+.yes-btn, .no-btn {
+  padding: 10px 20px;
+  border-radius: 9999px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.yes-btn {
+  background-color: #f472b6;
+  color: white;
+}
+
+.yes-btn:hover {
+  background-color: #ec4899;
+  transform: scale(1.05);
+}
+
+.no-btn {
+  background-color: #fbcfe8;
+  color: #db2777;
+}
+
+.no-btn:hover {
+  background-color: #f9a8d4;
+}
+
+/* === FLOATING DINOS === */
+#dino-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.floating-dino {
+  position: absolute;
+  width: 60px;
+  opacity: 0.2;
+  animation: floatDino 12s infinite linear;
+}
+
+@keyframes floatDino {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-10vh) rotate(360deg);
+  }
+}
+
+/* === THANOS SNAP ANIMATION === */
+.snap-away {
+  animation: snap 0.8s forwards ease-in-out;
+}
+
+@keyframes snap {
+  0% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0); filter: blur(4px); }
+}
+
+/* === FADE-AWAY === */
+.fade-away {
+  animation: fadeOut 0.8s forwards;
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-20px); }
+}
+
+/* === THEATER LOOK === */
+.theater-bg {
+  background: radial-gradient(circle at center, #111 0%, #000 70%);
+}
+
+video {
+  box-shadow: 0 0 25px rgba(255, 192, 203, 0.5);
+  border: 3px solid #f472b6;
+}
+
+/* === CUTE LITTLE TOUCHES === */
+h1, h2 {
+  letter-spacing: 0.5px;
+}
+/* === CONFETTI === */
+.confetti {
+  position: fixed;
+  top: 0;
+  width: 8px;
+  height: 16px;
+  opacity: 0.8;
+  border-radius: 2px;
+  animation: fallConfetti 3.5s linear forwards;
+  z-index: 999;
+}
+
+@keyframes fallConfetti {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+/* === THEATER CURTAINS === */
+.theater-stage {
+  position: relative;
+}
+
+.curtain {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, #ec4899, #f9a8d4);
+  z-index: 10;
+  animation: openCurtain 2.5s ease-out forwards;
+}
+
+.curtain.left {
+  left: 0;
+  border-right: 2px solid #fff;
+}
+
+.curtain.right {
+  right: 0;
+  border-left: 2px solid #fff;
+}
+
+@keyframes openCurtain {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+.curtain.right {
+  animation-delay: 0.2s;
+  animation-name: openCurtainRight;
+}
+
+@keyframes openCurtainRight {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(100%); }
+}
+.yes-btn:hover, .no-btn:hover, a:hover, button:hover {
+  box-shadow: 0 0 10px #f9a8d4, 0 0 20px #f472b6;
+}
+.fade-in {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.sparkles::before, .sparkles::after {
+  content: '✨';
+  position: absolute;
+  font-size: 2rem;
+  animation: sparkle 2s infinite ease-in-out;
+  color: #f472b6;
+}
+
+.sparkles::before {
+  top: 10%;
+  left: 15%;
+  animation-delay: 0.3s;
+}
+
+.sparkles::after {
+  bottom: 10%;
+  right: 20%;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0.8) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.2) rotate(20deg); }
+}
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-4px) rotate(-10deg); }
+  50% { transform: translateX(4px) rotate(10deg); }
+  75% { transform: translateX(-2px) rotate(-5deg); }
+  100% { transform: translateX(0); }
+}
+
+.no-btn.chomp-shake {
+  animation: shake 0.5s;
+}
