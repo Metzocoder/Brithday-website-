@@ -3,26 +3,76 @@
 {% block content %}
 
 <div class="bg-gray-900 text-pink-100 rounded-2xl shadow-2xl p-8 mt-10 relative overflow-hidden theater-bg">
-  <h2 class="text-3xl font-bold mb-8 text-center">🎥 Welcome to the Birthday Theater</h2>
+  <h2 class="text-4xl font-extrabold mb-8 text-center text-pink-400 drop-shadow-lg">
+    🎬 Welcome to the Dumbo Theater 🎬
+  </h2>
 
-  <div class="theater-stage relative overflow-hidden max-w-2xl mx-auto rounded-xl mb-8">
-    <div class="curtain left"></div>
-    <div class="curtain right"></div>
+  <div class="theater-stage relative overflow-hidden max-w-4xl mx-auto rounded-3xl mb-8 border-4 border-pink-500 shadow-2xl">
+    <!-- Curtains -->
+    <div class="curtain left bg-gradient-to-r from-pink-600 to-pink-400 absolute w-1/2 h-full top-0 left-0 transition-transform duration-[2000ms] z-30"></div>
+    <div class="curtain right bg-gradient-to-l from-pink-600 to-pink-400 absolute w-1/2 h-full top-0 right-0 transition-transform duration-[2000ms] z-30"></div>
 
-    <div class="relative bg-black rounded-xl overflow-hidden flex items-center justify-center h-64">
-      <video controls class="rounded-xl w-full h-full object-contain">
-        <source src="static\videos\birthday_surprise.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+    <!-- Dim overlay (below curtains, above background, but not blocking clicks later) -->
+    <div id="theater-dim" class="absolute inset-0 bg-black opacity-0 transition-opacity duration-[1200ms] z-10 pointer-events-none"></div>
+
+    <!-- Movie screen -->
+    <div id="screen" class="relative bg-black rounded-3xl overflow-hidden flex items-center justify-center aspect-video opacity-0 transition-opacity duration-[1200ms] z-20">
+      <iframe
+        id="drivePlayer"
+        src="https://drive.google.com/file/d/18hHJ7v7Y3xU2Y5iXyLIDIZDwXx9KJSwJ/preview"
+        class="w-full h-[500px] rounded-3xl border-0"
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowfullscreen
+        style="border:none; width:100%; height:100%; pointer-events:auto; position:relative; z-index:50;">
+      </iframe>
+
+      <!-- Soft glow (won’t block clicks now) -->
+      <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-pink-300/10 via-transparent to-pink-300/10 pointer-events-none z-0"></div>
     </div>
   </div>
 
-  <div class="mt-10 text-center">
+  <!-- Roll credits button -->
+  <div class="text-center mt-10 relative z-20">
     <a href="{{ url_for('credits') }}"
-      class="inline-block px-8 py-3 bg-pink-400 text-white font-bold rounded-full hover:bg-pink-500 shadow-lg transition">
+      class="inline-block px-10 py-4 bg-pink-500 text-white text-lg font-bold rounded-full shadow-lg hover:bg-pink-600 transform hover:scale-105 transition-all duration-300">
       Roll the Credits 💌
     </a>
   </div>
+
+  <!-- Floating sparkles -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    {% for i in range(15) %}
+    <div class="absolute bg-pink-300 rounded-full opacity-50 animate-ping"
+      style="width: {{ 6 + i }}px; height: {{ 6 + i }}px; top: {{ (i * 10) % 100 }}%; left: {{ (i * 7) % 100 }}%;"></div>
+    {% endfor %}
+  </div>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const dimOverlay = document.getElementById("theater-dim");
+    const leftCurtain = document.querySelector(".curtain.left");
+    const rightCurtain = document.querySelector(".curtain.right");
+    const screen = document.getElementById("screen");
+
+    // Step 1: Dim lights
+    setTimeout(() => {
+      dimOverlay.style.opacity = "0.8";
+    }, 600);
+
+    // Step 2: Open curtains
+    setTimeout(() => {
+      leftCurtain.style.transform = "translateX(-100%)";
+      rightCurtain.style.transform = "translateX(100%)";
+      dimOverlay.style.opacity = "0.4";
+    }, 2000);
+
+    // Step 3: Reveal video
+    setTimeout(() => {
+      screen.style.opacity = "1";
+      dimOverlay.style.opacity = "0";
+    }, 3500);
+  });
+</script>
 
 {% endblock %}
